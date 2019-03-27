@@ -5,7 +5,7 @@
     
     function printDatasets($id)
     {
-echo '<ul class="nav nav-pills nav-fill">';
+		echo '<ul class="nav nav-pills nav-fill">';
 
         $db = DBConnection::conexionBD();
 
@@ -23,7 +23,7 @@ echo '<ul class="nav nav-pills nav-fill">';
             while ($database = $datasets->fetch_assoc())
             {
                 echo '<li class="nav-item">';
-                echo '<a class="nav-link' . ($id == $database['id'] ? ' active' : '') . '" href="../index.php?id=' . $database['id'] .
+                echo '<a class="nav-link' . ($id == $database['id'] ? ' active' : '') . '" href="index.php?id=' . $database['id'] .
                 '&view=1">' . $database["name"] . '</a></li>';
             }
             echo "</ul>";
@@ -31,58 +31,56 @@ echo '<ul class="nav nav-pills nav-fill">';
     }
         
 
-		function printViews($id, $view)
-		{
-			echo '<ul class="nav nav-tabs">';
+	function printViews($id, $view)
+	{
+		echo '<ul class="nav nav-tabs">';
 
-			$db = DBConnection::conexionBD();
-			
-			if($db)
+		$db = DBConnection::conexionBD();
+		
+		if($db)
+		{
+			$views = $db->query("SELECT * FROM views WHERE dataset_id=$id");
+			if (!$views)
+				echo "Error obteniendo vistas.";
+				
+			while ($vista = $views->fetch_assoc())
 			{
-				$views = $db->query("SELECT * FROM views WHERE dataset_id=$id");
-				if (!$views)
-					echo "Error obteniendo vistas.";
-				
-				while ($vista = $views->fetch_assoc())
-				{
-					echo '<li class="nav-item">';
-					echo '<a class="nav-link' . ($view == $vista['id'] ? ' active' : '') . '" href="../index.php?id=' . $id .
-					'&view=' . $vista["id"] . '">' . $vista["view_name"] . '</a></li>';
-				}
-				echo "</ul>";
+				echo '<li class="nav-item">';
+				echo '<a class="nav-link' . ($view == $vista['id'] ? ' active' : '') . '" href="index.php?id=' . $id .
+				'&view=' . $vista["id"] . '">' . $vista["view_name"] . '</a></li>';
 			}
+			echo "</ul>";
 		}
+	}
 
-		function validateView($inputId, $inputView)
-		{
-			$db = DBConnection::conexionBD();
-				
-			if (!isset($inputId))
-				return array("id" => 1, "view" => 1); //$inputId = 1;
-			if (!isset($inputView))
-				$inputView = 1;
+	function validateView($inputId, $inputView)
+	{
+		$db = DBConnection::conexionBD();
+			
+		if (!isset($inputId))
+			return array("id" => 1, "view" => 1); //$inputId = 1;
+		if (!isset($inputView))
+			$inputView = 1;
 
-			$isValidId = $db->query("SELECT * FROM datasets WHERE id=$inputId");
-			if (!$isValidId || $isValidId->num_rows == 0)
-				$inputId = 1;
+		$isValidId = $db->query("SELECT * FROM datasets WHERE id=$inputId");
+		if (!$isValidId || $isValidId->num_rows == 0)
+			$inputId = 1;
 
 			$isValidView = $db->query("SELECT * FROM views WHERE dataset_id=$inputId AND id=$inputView");
-			if (!$isValidView || $isValidView->num_rows == 0)
-				$inputView = 1;
+		if (!$isValidView || $isValidView->num_rows == 0)
+			$inputView = 1;
 
-
-			return array("id" => $inputId, "view" => $inputView);
-		}
+		return array("id" => $inputId, "view" => $inputView);
+	}
 
 		//$ID es un array con "id y view" ya validado por validateView
-		function getHandlerRoute($ID)
-		{
-			$dataset = $ID["id"];
-			$view = $ID["view"];
+	function getHandlerRoute($ID)
+	{
+		$dataset = $ID["id"];
+		$view = $ID["view"];
 
-			$db = DBConnection::conexionBD();
-
-			$query = $db->query("SELECT * FROM views WHERE dataset_id=$dataset AND id=$view");
-			$row = $query->fetch_assoc();
-			return $row['view_handler_name'];
-		}
+		$db = DBConnection::conexionBD();
+		$query = $db->query("SELECT * FROM views WHERE dataset_id=$dataset AND id=$view");
+		$row = $query->fetch_assoc();
+		return $row['view_handler_name'];
+	}

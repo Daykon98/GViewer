@@ -5,13 +5,13 @@
            <ul class="navbar-nav ml-auto">'; //Bara de la derecha
     if (isset($_SESSION["login"]) && ($_SESSION["login"]===true))
     {
-        echo '<li><a class="nav-link" href="../../?logout">Log out</a></li>';
-        echo '<li><a class="nav-link" href="../../myViews.php">My views</a></li>';
+        echo '<li><a class="nav-link" href="index.php?logout">Log out</a></li>';
+        echo '<li><a class="nav-link" href="myViews.php">My views</a></li>';
     }
     else
     {
-        echo '<li><a class="nav-link" href="../../login.php">Log In</a></li>
-               <li><a class="nav-link" href="../../registro.php">Sign In</a></li>';
+        echo '<li><a class="nav-link" href="login.php">Log In</a></li>
+               <li><a class="nav-link" href="registro.php">Sign In</a></li>';
     }
     echo '</ul>
     </div>
