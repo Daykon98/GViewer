@@ -1,10 +1,10 @@
+<?php require("includes/config.php") ?>
 <!DOCTYPE html>
 <html>
 <head>
 	<meta charset="utf-8">
 	<title>Graph</title>
-	<?php require_once('includes/comun/bootstrap.php'); 
-	      require("includes/config.php");?>
+	<?php require_once('includes/comun/bootstrap.php'); ?>
 	<script src="js/canvasjs.min.js"></script>
 	<?php	require_once('includes/viewSelection.php');
 			$ID = validateView(isset($_GET['id']) ? $_GET['id'] : null, isset($_GET['view']) ? $_GET['view'] : null);

@@ -1,7 +1,7 @@
 <?php
 
-require("includes\config.php");
-require("includes\DBConnection.php");
+require("includes/config.php");
+require("includes/DBConnection.php");
 
 
 ?>

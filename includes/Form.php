@@ -60,21 +60,30 @@ abstract class Form
             $this->action = htmlentities($_SERVER['PHP_SELF']);
         }
     }
+
+    public function procesa()
+    {
+        if ( $this->formularioEnviado($_POST) ) {
+            $result = $this->procesaFormulario($_POST);
+            if (!is_array($result)){
+                header('Location: '.$result);
+                exit();
+            }
+
+        }
+    }
   
     /**
      * Se encarga de orquestar todo el proceso de gestión de un formulario.
      */
     public function gestiona()
     {   
-        if ( ! $this->formularioEnviado($_POST) ) {
+        if ( !$this->formularioEnviado($_POST) ) {
             echo $this->generaFormulario();
         } else {
             $result = $this->procesaFormulario($_POST);
             if ( is_array($result) ) {
                 echo $this->generaFormulario($result, $_POST);
-            } else {
-                header('Location: '.$result);
-                exit();
             }
         }  
     }

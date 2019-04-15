@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 27, 2019 at 10:44 AM
+-- Generation Time: Apr 15, 2019 at 10:30 AM
 -- Server version: 10.1.35-MariaDB
 -- PHP Version: 7.2.9
 
@@ -28263,11 +28263,18 @@ CREATE TABLE `user_views` (
 --
 
 INSERT INTO `user_views` (`id`, `view_id`, `dataset_id`, `user_id`, `data`) VALUES
-(62, 2, 1, 1, '{\"country\":\"Any\",\"age\":\"Any\"}'),
-(63, 2, 1, 1, '{\"country\":\"Belarus\",\"age\":\"Any\"}'),
 (64, 2, 1, 1, '{\"country\":\"Belarus\",\"age\":\"75 or more\"}'),
-(65, 1, 2, 1, '{\"country\":\"Bahamas\"}'),
-(66, 2, 1, 5, '{\"country\":\"Bahrain\",\"age\":\"25-34 year\"}');
+(66, 2, 1, 5, '{\"country\":\"Bahrain\",\"age\":\"25-34 year\"}'),
+(67, 1, 1, 1, '{\"country\":\"Spain\",\"year\":\"Any\",\"age\":\"75 or more\"}'),
+(68, 1, 1, 1, '{\"country\":\"United Kingdom\",\"year\":\"Any\",\"age\":\"75 or more\"}'),
+(69, 1, 1, 1, '{\"country\":\"South Africa\",\"year\":\"1997\",\"age\":\"25-34 year\"}'),
+(70, 3, 1, 1, '{\"country\":\"France\",\"age\":\"35-54 year\"}'),
+(71, 3, 1, 1, '{\"country\":\"Any\",\"age\":\"Any\"}'),
+(72, 1, 2, 1, '{\"country\":\"Spain\"}'),
+(73, 1, 2, 1, '{\"country\":\"Trinidad and Tobago\"}'),
+(74, 2, 2, 1, '{\"country\":\"Spain\"}'),
+(75, 2, 1, 1, '{\"country\":\"Cabo Verde\",\"age\":\"35-54 year\"}'),
+(76, 2, 1, 1, '{\"country\":\"Czech Republic\",\"age\":\"35-54 year\"}');
 
 -- --------------------------------------------------------
 
@@ -28372,7 +28379,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `user_views`
 --
 ALTER TABLE `user_views`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=77;
 
 --
 -- Constraints for dumped tables

@@ -12,12 +12,11 @@ class Usuario{
     private $rol;
     private $id;
 
-    private function __construct($nombreUsuario, $nombre, $password, $rol, $id)
+    private function __construct($nombreUsuario, $nombre, $password, $id)
     {
         $this->nombreUsuario= $nombreUsuario;
         $this->nombre = $nombre;
         $this->password = $password;
-        $this->rol = $rol;
         $this->id = $id;
     }
 
@@ -82,7 +81,7 @@ class Usuario{
             } else {
                 $fila = $rs->fetch_assoc();
                 $rs->free();
-                $user = new Usuario($fila['username'], $fila['nombre'], $fila['password'], $fila['rol'], $fila['id']);
+                $user = new Usuario($fila['username'], $fila['username'], $fila['password'], $fila['id']);
                 return $user;
             }
         } else {
